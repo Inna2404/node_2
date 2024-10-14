@@ -1,6 +1,8 @@
 const path = require("path");
 const fs = require("fs");
 const { argv } = require("process");
+const crypto = require("crypto");
+const zlib = require("zlib");
 
 const readLine = require("readline");
 const { cpus, EOL, homedir, userInfo, arch } = require("os");
@@ -198,6 +200,40 @@ function handleCommand(command) {
           console.log("Invalid input");
         }
         return;
+
+      case "hash":
+        if (args[0]) {
+          const hash = crypto.createHash("sha256");
+          const readStreamHash = fs.createReadStream(args[0]);
+          readStreamHash.on("error", () => console.log("Operation falied"));
+          readStreamHash.on("data", (chunk) => hash.update(chunk));
+          readStreamHash.on("end", () => console.log(hash.digest("hex")));
+        } else {
+          console.log("Invalid input");
+        }
+        break;
+
+      case "compress":
+        if (args[0] && args[1]) {
+          const src = fs.createReadStream(args[0]);
+          const dest = fs.createWriteStream(args[1]);
+          const brotli = zlib.createBrotliCompress();
+          src.pipe(brotli).pipe(dest);
+        } else {
+          console.log("Invalid input");
+        }
+        break;
+
+      case "decompress":
+        if (args[0] && args[1]) {
+          const src = fs.createReadStream(args[0]);
+          const dest = fs.createWriteStream(args[1]);
+          const brotli = zlib.createBrotliCompress();
+          src.pipe(brotli).pipe(dest);
+        } else {
+          console.log("Invalid input");
+        }
+        break;
 
       default:
         console.log("Invalid input");
