@@ -1,0 +1,27 @@
+{
+  "name": "node_2",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "run": " npm run start -- --username=user_name",
+    "up": "up",
+    "ls": "ls",
+    "cat": "cat path_to_file",
+    "add": "add new_file.txt",
+    "rn": "rn new_file.txt renamed_file.txt",
+    "cp": "cp renamed_file.txt copy_file.txt",
+    "mv": "mv copy_file.txt moved_file.txt",
+    "rm": "rm removed_file.txt",
+    "os --EOL": "os --EOL",
+    "os --cpus": "os --cpus",
+    "os --homedir": "os --homedir",
+    "os --username": "os --username",
+    "os --architecture": "os --architecture",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
